@@ -19,4 +19,6 @@
         </div>
     </div>
     <input type="submit"  class="btnIngresar"  name="button2" id="button2" value="Comprar" />  
+    <div class="areaBtn"><a href="confirmar.php" class="button">Confirmar la Compra</a></div>
+</div>
 </div>

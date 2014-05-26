@@ -29,7 +29,7 @@ $arrproductos = $arrproductos['output']['response'];
             <div class="texRes">
                 <div class="boxContTex">
                     <div id="carrito">
-                        <!--AQUI ES DONDE VOY A MOSTRAR LOS DATOS DEL PRODUCTOS AÑADITOS AL CARRITO DE COMPRAS.-->
+                        <!--AQUI ES DONDE VOY A MOSTRAR LOS DATOS DEL PRODUCTOS A�ADITOS AL CARRITO DE COMPRAS.-->
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ $arrproductos = $arrproductos['output']['response'];
                             </div>
                             <div>
                                 <button  value="<?php echo $arrproductos[$i]['id']; ?>" class='botoncompra'>
-                                    <img title="Añadir al carrito"  src="images/icocar.png" width="22" height="22"  alt></img>
+                                    <img title="Agregar al carrito"  src="images/icocar.png" width="22" height="22"  alt></img>
                                 </button>
                             </div>
                         </div>
