@@ -12,7 +12,6 @@ function deleteFromArray($idProducto) {
         }
     }
     $_SESSION['carrito'] = array_values($arrProduct);
-    ;
     echo "<script type='text/javascript'>window.location = 'index.php';</script>";
 }
 
@@ -28,6 +27,7 @@ function addCart() {
         $_SESSION ['carrito'] [] = $array; //Gurado el array en la varible de session
         $_SESSION ['contador']++;
     }
+    $_GET['p'] = "";
 }
 
 //Verifica  los Item del carrito con carrito ya ingresado anteriormente, si esta ingresado uno que sea ingresado de nuevo actulzia su cantidad
@@ -61,6 +61,7 @@ function updateItem($i) {
     if (isset($_GET ['c'])) {
         $_SESSION ['carrito'] [$i] ['cantidad'] = $_GET['c'] + $_SESSION ['carrito'] [$i] ['cantidad']; //Se le suma la cantidad nueva + la cantida que ya tenia anteriormente
     }
+    $_GET['p'] = "";
 }
 
 ?>

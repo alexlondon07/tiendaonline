@@ -29,6 +29,10 @@ $arrgaleria = $arrgaleria['output']['response'];
         <link href="css/tienda.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
         <script type="text/javascript" src="js/tienda.js"></script>
+        <!--        Galeria de images inicio-->
+        <script src="lightboxjs/modernizr.custom.js"></script>
+        <link rel="stylesheet" href="lightbox/css/lightbox.css" media="screen"/>
+        <!--        Galeria de images fin-->
     </head>
     <body>
         <section  class="boxIzqu" >
@@ -53,8 +57,10 @@ $arrgaleria = $arrgaleria['output']['response'];
                     ?>
                     <div class="cajaPrin">
                         <div class="texprincipal">
-                            <div class="boxfoto">
-                                <a href="#" title="Ver Detalles"><img src="verdetalles.php?ac=view&id=<?php echo $arrgaleria[$i]['id']; ?>" /></a>
+                            <div class="image-set">
+                                <div class="boxfoto">
+                                    <a class="example-image-link" href="verdetalles.php?ac=view&id=<?php echo $arrgaleria[$i]['id']; ?>" data-lightbox="example-set" title="<?php echo $arrgaleria[$i]['descrip']; ?>"><img class="example-image" src="verdetalles.php?ac=view&id=<?php echo $arrgaleria[$i]['id']; ?>" alt="<?php echo $arrgaleria[$i]['descrip']; ?>" /></a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,6 +69,8 @@ $arrgaleria = $arrgaleria['output']['response'];
             }
             ?>  
         </section>
+        <script src="lightbox/js/jquery-1.10.2.min.js"></script>
+        <script src="lightbox/js/lightbox-2.6.min.js"></script>
     </body>
 </html>
 
