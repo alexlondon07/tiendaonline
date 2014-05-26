@@ -1,0 +1,107 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+@media screen and (max-width: 1024px) {
+/*****************************************id*/
+/***************************************************class*/
+	
+	
+}
+@media screen and (max-width: 600px) {
+/*****************************************id*/
+/***************************************************class*/	
+
+
+}
+@media screen and (max-width: 500px) {
+/***************************************************id*/
+
+/***************************************************class*/	
+
+
+}
+
+@media screen and (max-width: 480px) {
+	
+
+/***************************************************id*/
+/***************************************************class*/
+.head_Cot {
+	min-height:60px;
+	width:100%;
+	}
+.head_CotSB {
+	/*min-height:50px;*/
+	width:100%;
+	min-height:60px;
+	}
+.sect_Cot {
+	margin:0 auto;
+	width:95%;
+	}
+.foot_Cot {
+	min-height:200px;
+	width:100%;
+	}
+.logoTop { 
+	max-width:91px;
+	}
+.boxHeaderprin {
+	min-height:90px;
+
+	}
+.cotLogosPie {
+	width:100%; 
+	}
+.boxmenuFooter {
+	display:none;
+	}
+.formVincu label {
+	width:95%;
+
+	}
+.formVincu input[type="text"] {
+	width:95%;
+	}
+.formVincu input[type="email"] {
+	width:95%;
+	}
+.formVincu textarea {
+	width:95%;
+	}
+
+.formVincu select {
+	width:96%;
+	}
+.formVincu input[type="submit"] {
+	width:97%;
+	}
+.boxNavLeft {
+	width:100%;
+	margin:20px 0 0 0;
+	}
+.boxsliderTop {
+	width:100%; 
+	}
+.navLeft ul li a:link {
+	padding:8px 5px 8px 10px;
+	width:95%;
+	}
+.navLeft ul li a:hover {
+	background-position:0 0.5px;
+	}
+}
+
+@media screen and (max-width: 300px) {
+/*****************************************id*/
+/***************************************************class*/
+
+
+}
+
+@media screen and (max-width: 280px) {
+/*****************************************id*/
+/***************************************************class*/
+
+}

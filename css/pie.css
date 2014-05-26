@@ -1,0 +1,137 @@
+@charset "utf-8";
+/* CSS Document */
+
+.footerBox {
+    margin: 0 auto; 
+    width: 1024px;
+    min-height:50px;
+    color: #e9dfc7;
+    font-size: 1em;
+    font-family: Arial;
+    text-align: center; 
+/*    background-color:#d5171f;
+    background-image:url(../images/fondoPie.png); */
+}
+.footerBox section {
+    display:inline-block;
+    vertical-align: top; 
+    text-align: center;
+}
+.footerBoxSup {
+    margin-top:10px;
+}
+.footerBoxSig {
+    text-align:left;
+    font-size:1.125em;
+    color:#e9dfc7;
+    padding:15px;
+    margin:5px;
+    background:rgba(0,0,0,0.05);
+    border:1px solid rgba(0,0,0,0.1);
+    -webkit-border-radius: 5px!important;
+    border-radius: 5px!important;
+}
+.footerBoxSig h3 {
+    text-align:left;
+    font-size:0.750em;
+    color:#fff;
+    margin:0 0 5px 0;
+    padding:0;
+}
+.footerBoxSig a {
+    text-decoration:none;
+}
+.footerBoxInfo {
+    text-align:left;
+    font-size:1.125em;
+    color:#fff;
+    padding:15px;
+    margin:5px 10px;
+    border-left:1px solid rgba(0,0,0,0.1);
+    border-right:1px solid rgba(0,0,0,0.1);
+    min-width:190px;
+    -webkit-border-radius: 0px!important;
+    border-radius: 0px!important;
+}
+.footerBoxInfo h3 {
+    text-align:left;
+    font-size:0.750em;
+    color:#fff;
+    margin:0 0 5px 0;
+    padding:0;
+}
+.footerBoxInfo a {
+    text-decoration:none;
+}
+
+.footerLineaSup {
+    border-right:1px solid #501218;
+    width:1px;
+    background:#67161e;
+    margin:0;
+    padding:0;
+    height:50px;
+}
+#footerBoxInf {
+    width:100%;
+    padding-top:10px;
+    padding-bottom:10px;
+    /*background: #69131a;*/
+}
+.FooterMenu {
+    font-size:0.625em;
+    font-weight:bold;
+    text-transform: UPPERCASE ; 
+    display:inline-block;
+    vertical-align: top;
+    margin:0 10px; 
+}
+
+.FooterMenu ul {  
+    list-style: none;
+    margin:0;
+}  
+.FooterMenu ul li {  
+    display: inline;  
+}  
+.FooterMenu ul li a {     
+    padding: 3px 6px;  
+    color: #e9dfc7;  
+    text-decoration: none;  
+}  
+.FooterMenu ul li a:hover {  
+    background:#c91119;  
+    color: #e9dfc7;  
+    -webkit-border-radius: 3px;  
+    -moz-border-radius: 3px;  
+    border-radius: 3px;  
+    padding: 3px 6px;  
+    margin: 0;  
+    text-decoration: none;  
+}
+#FooterCopy {
+    font-size:0.688em;
+    margin:0 10px;
+}
+#FooterDes {
+    font-size:0.688em;
+    margin:0 10px;
+}
+
+#footerAr {
+    font-size: 0.688em;
+    margin: 5px 0;
+    padding: 5px 0;
+    width: 72%;
+    font-family: Arial;
+    text-align: center;
+    border-top: 1px dashed rgba(255,255,255,0.2); 
+
+}
+
+@media screen and (max-width: 600px) { 
+    .footerBox {
+        width: 100%;
+    }
+
+}

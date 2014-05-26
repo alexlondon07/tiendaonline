@@ -1,0 +1,18 @@
+  body {
+                margin-left: 0px;
+                margin-top: 0px;
+                margin-right: 0px;
+                margin-bottom: 0px;
+            }
+
+            #scroll_cat1 {
+                height: 260px;
+                width: 100%;
+                align: justify;
+                margin-right: auto;
+                margin-left: auto;
+                visibility: visible;
+                overflow: auto;
+                display: block;
+
+            }
