@@ -45,6 +45,7 @@ function initgaleria() {
                 }
                 if (bValid) {
                     $('#formcreate1').submit();
+                   // GALERIA.savedata();
                 }
             },
             "Cancelar": function() {
@@ -87,6 +88,24 @@ var GALERIA = {
             alert('No hay productos asociados a la categoría seleccionada');
             $("#idproducto").append(option);
             $('#idproducto').attr('disabled', true);
+        }
+    },
+    savedata: function() {
+        q.op = 'galeriasave';
+        q.idcategoria = $('#idcategoria').val();
+        q.idproducto = $('#idproducto').val();
+        q.descrip = $('#descrip').val();
+        q.habilitado = $('#habilitado').val();
+        q.keyid = $('#keyid').val();
+        UTIL.callAjaxRqst(q, this.savedatahandler);
+    },
+    savedatahandler: function(data) {
+        UTIL.cursorNormal();
+        if (data.output.valid) {
+            updateTips('Información guardada correctamente');
+            window.location = 'galerias_new.php';
+        } else {
+            updateTips('Error: ' + data.output.response.content);
         }
     },
     deletedata: function(id) {

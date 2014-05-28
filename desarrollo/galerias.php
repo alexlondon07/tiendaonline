@@ -39,7 +39,7 @@ $arrgaleria = $arrgaleria['output']['response'];
                                 <th class="head1">Categoría</th>
                                 <th class="head0">Producto</th>
                                 <th class="head0">Estado</th>
-                                  <th class="head0">Foto</th>
+                                <th class="head0">Foto</th>
                             </tr>
                         </thead>
                         <colgroup>
@@ -112,15 +112,23 @@ $arrgaleria = $arrgaleria['output']['response'];
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Foto Tamaño 750x600</label>
                                 <input type="hidden" name="op" id="op" value="galeriasave"/>
                                 <input type="hidden" name="ke" id="ke"/>
                                 <input type="hidden" name="lu" id="lu"/>
                                 <input type="hidden" name="ti" id="ti"/>
-                                <div class="controls"> <input type="file" name="archivo" id="archivo" /></div>
+                                <!--MANDO LA INFORMACIÓN DE LA IMAGEN-->
+                                <input type="hidden" vale="<?php $_SESSION["nombrearchivo"]; ?>" name="nom_arc" id="nom_arc"/>
+                                <input type="hidden" vale="<?php $_SESSION["tipoarchivo"]; ?>" name="tipo_arc" id="tipo_arc"/>
+                                <input type="hidden" vale="<?php $_SESSION["contenidooarchivo"]; ?>" name="cont_arc" id="cont_arc"/>
+                                <input type="hidden" vale="<?php $_SESSION["tamanio"]; ?>" name="tam_arc" id="tam_arc"/>
+                                <input type="hidden" vale="<?php $_SESSION["error"]; ?>" name="error_arc" id="error_arc"/>
+                                <input type="hidden" name="keyid" id="keyid"/>
                             </div> 
                             <div class="control-group">
-                                <input type="hidden" name="keyid" id="keyid"/>
+                                <label class="control-label">Seleccionar archivo Tamaño 750x600</label>
+                                <div class="controls">
+                                    <iframe id='ifm' name='ifm' src="subir_archivos.php" width="200" height="60" frameborder="0"></iframe> 
+                                </div>
                             </div>
                         </form>
                     </td>

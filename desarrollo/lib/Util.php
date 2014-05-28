@@ -7,8 +7,7 @@
  */
 class Util {
 
-  public $THE_KEY = 'e1ca41c9c29a354fea64d33228f45503';
-    
+    public $THE_KEY = 'e1ca41c9c29a354fea64d33228f45503';
 
     /**
      * Valor de un KB = 1024 bytes
@@ -26,12 +25,11 @@ class Util {
      * Url de la raiz de la aplicación
      * @var string 
      */
-   
     public static function URL_ROOT_HOST() {
         $URL_ROOT_HOST = "http://www.tinaytin.com/";
         return $URL_ROOT_HOST;
     }
-   
+
     public function __construct() {
         //contructor que no tiene ninguna funcion, por ahora
     }
@@ -40,7 +38,6 @@ class Util {
      * Método para capturar la Ip del cliente
      * @return string Ip del cliente
      */
-   
     public static function get_real_ipaddress() {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
             $ip = $_SERVER['HTTP_CLIENT_IP']; //check ip from share internet
@@ -59,8 +56,7 @@ class Util {
      * @param string $referer
      * @return array ['status', 'header', 'content']
      */
-   
-   public static function post_request($url, $data, $referer = '') {
+    public static function post_request($url, $data, $referer = '') {
         // Convert the data array into URL Parameters like a=b&foo=bar etc.
         $data = http_build_query($data);
         // parse the given URL
@@ -146,7 +142,6 @@ class Util {
      * @param string $okSessionVarName nombre de la variable de sesion que se inicia
      * @return array resultado del post
      */
-  
     public function post_request_common($post_data, $okLocation = "", $errorLocation = "", $okSessionVarName = "") {
         $result = $this->post_request($this->URL_BLAST24WS, $post_data);
         if ($result['status'] == 'ok') {
@@ -176,7 +171,6 @@ class Util {
      * @param string $str
      * @return string Cadena de carateres segura
      */
-    
     public static function remove_special_char($str) {
         if ($str == null || count($str) <= 0) {
             return $str;
@@ -245,8 +239,7 @@ class Util {
      * @param string $data2
      * @return string hash del password
      */
-    
-   public static function create_passhash($type = "", $data1 = "", $data2 = "") {
+    public static function create_passhash($type = "", $data1 = "", $data2 = "") {
         if ($type == 'send') {
             $hash = sha1($data1 . $data2);
 //		echo '<br/>send '.$data1.' - '.$data2;
@@ -266,8 +259,7 @@ class Util {
      * @param string $pathFile La ubicacion fisica del archivo.
      * @param int $isNew 0 es para escribir sobre un archivo existente. 1 para crear uno nuevo.
      */
-  
-  public static function make_file($data, $pathFile, $isNew = 0) {
+    public static function make_file($data, $pathFile, $isNew = 0) {
         $filesize = 0;
         if (file_exists($pathFile)) {
             if ($isNew) {
@@ -295,7 +287,6 @@ class Util {
      * @param int $isNew 0 es para escribir sobre un archivo existente. 1 para crear uno nuevo.
      * @param string $pathFile La ubicacion fisica del archivo.
      */
-    
     public static function make_debug_file($str, $file, $line, $isNew = 0, $pathFile = "log/debug_file.txt") {
         $filesize = 0;
         if (file_exists($pathFile)) {
@@ -316,11 +307,11 @@ class Util {
         fwrite($fh, $str);
         fclose($fh);
     }
-    
+
     public static function session_chainstring($nameSessionVar, $str) {
         $_SESSION[$nameSessionVar].= $str . '*';
     }
-    
+
     /**
      * Metodo para construir un UPDATE.
      * @param string $table nombre de la tabla a escribir
@@ -338,7 +329,6 @@ class Util {
       </code>
      * 
      */
-    
     public static function make_query_update($table, $where, $arrfieldscomma, $arrfieldsnocomma) {
         $query = "UPDATE ";
         if ($table == null || strlen($table) < 1) {
@@ -367,7 +357,6 @@ class Util {
     /**
      * Metodo para encriptar password
      */
-   
     public function make_hash_pass($param1, $param2) {
         if (strlen($param1) > 3 && strlen($param2) > 3) {
             $r = strtoupper(sha1($param1 . $param2 . 'asdf'));
@@ -398,7 +387,6 @@ class Util {
      *  @param string $email email address to be checked
      *  @return true if the email is valid, false otherwise
      */
-   
     public static function validate_email($email) {
         $regexp = "/^[a-z0-9]+([_\\.-][a-z0-9]+)*@([a-z0-9]+([\.-][a-z0-9]+)*)+\\.[a-z]{2,}$/i";
         if (preg_match($regexp, $email)) {
@@ -412,13 +400,13 @@ class Util {
         $factor = pow(10, $decimales);
         return (round($numero * $factor) / $factor);
     }
-    
+
     /**
      * La hora debe tener el formato militar "HH:mm"
      * @param String $HHmm
      * @return int cantidad de minutos
      */
-    public static function convertHourToMinutes($HHmm){
+    public static function convertHourToMinutes($HHmm) {
         $arrHHMM = explode(":", $HHmm);
         $hora = intval($arrHHMM[0]);
         $minuto = intval($arrHHMM[1]);
@@ -449,6 +437,7 @@ class Util {
     public function error_user_already_exist() {
         return array('output' => array('valid' => false, 'response' => array('code' => '106', 'content' => ' El correo ingresado ya lo utiliza otro usuario.')));
     }
+
     public function error_cliente_already_exist() {
         return array('output' => array('valid' => false, 'response' => array('code' => '106', 'content' => ' El correo ingresado ya lo utiliza otro cliente.')));
     }
@@ -465,11 +454,14 @@ class Util {
         return array('output' => array('valid' => false, 'response' => array('code' => '109', 'content' => $content)));
     }
 
+    public function error_missing_data_file($content = NULL) {
+        return array('output' => array('valid' => false, 'response' => array('code' => '110', 'content' => 'Error al subir el archivo')));
+    }
+
     public function date_now_server() {
         return 'DATE_ADD(NOW(),INTERVAL 2 HOUR)';
     }
-    
-    
+
 }
 
 ?>

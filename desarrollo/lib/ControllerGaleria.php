@@ -47,7 +47,12 @@ class ControllerGaleria {
     private function galeriasave() {
         $keyid = isset($_REQUEST['keyid']) ? $_REQUEST['keyid'] : ''; //ID QUE ME TRAIGO DEL FORMULARIO
         $id = 0;
-        $file = isset($_FILES['archivo']) ? $_FILES['archivo'] : ''; //ARCHIVO
+        //Informacion de la imagen
+        $file_name = $_SESSION["nombrearchivo"];
+        $file_type = $_SESSION["tipoarchivo"];
+        $contenido = $_SESSION["contenidooarchivo"];
+        $file_size = $_SESSION["tamanio"];
+        $file_error = $_SESSION["error"];
         $idfile = 0;
         if ($keyid > 0) {
             //se actualzia la información
@@ -66,73 +71,51 @@ class ControllerGaleria {
                 header('Location: galerias.php');
             }
             //ACTULIZAR REGITSRO DE ARCHIVOS
-            if ($file > 0) {
-                $file_name = utf8_decode($file['name']);
-                $file_type = $file['type'];
-                $file_tmp_name = $file['tmp_name'];
-                $file_error = $file['error'];
-                $file_size = $file['size'];
-                $contenido = '';
-                //ACTULIZA EL RESGIRO SI LA VARIABLE $file_name NO ESTA NULA 
-                if ($file_name != '') {
-                    $fp = fopen($file_tmp_name, "rb");
-                    $contenido = fread($fp, $file_size);
-                    $contenido = addslashes($contenido);
-                    fclose($fp);
-                    if ($file_error == 0 && $file_size > 0 && $file_size < 14716800) {
-                        $q = "UPDATE tiendaonline_archivos SET arc_nombre='" . $file_name . "' ,arc_tipo='" . $file_type . "',arc_contenido='" . $contenido . "',arc_tamanio='" . $file_size . "' WHERE arc_id=" . $keyid;
-                        mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                        $idfile = mysql_insert_id();
-                        if ($idfile <= 0) {
-                            header('Location: galerias.php');
-                            //$this->response = $this->UTILITY->error_missing_data_file();
-                        }
+            if ($file_name != '') {
+                if ($file_error == 0 && $file_size > 0 && $file_size < 14716800) {
+                    $q = "UPDATE tiendaonline_archivos SET arc_nombre='" . $file_name . "' ,arc_tipo='" . $file_type . "',arc_contenido='" . $contenido . "',arc_tamanio='" . $file_size . "' WHERE arc_id=" . $keyid;
+                    mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                    $id = mysql_insert_id();
+                    if ($idfile <= 0) {
                         header('Location: galerias.php');
                     }
+                    $_SESSION["nombrearchivo"] = "";
+                    $_SESSION["tipoarchivo"] = "";
+                    $_SESSION["contenidooarchivo"] = "";
+                    $_SESSION["tamanio"] = "";
+                    $_SESSION["error"] = "";
                     header('Location: galerias.php');
                 }
-                header('Location: galerias.php');
             }
             header('Location: galerias.php');
         } else {
             /* AQUI ES DONDE SE INGRESAN LAS FOTOS */
-            //GUARADAR LA IMAGEN
-            if ($file > 0) {
-                $file_name = utf8_decode($file['name']);
-                $file_type = $file['type'];
-                $file_tmp_name = $file['tmp_name'];
-                $file_error = $file['error'];
-                $file_size = $file['size'];
-                $contenido = '';
-                if ($file_name != '') {
-                    $fp = fopen($file_tmp_name, "rb");
-                    $contenido = fread($fp, $file_size);
-                    $contenido = addslashes($contenido);
-                    fclose($fp);
-                    if ($file_error == 0 && $file_size > 0 && $file_size < 14716800) {
-                        $q = "INSERT INTO tiendaonline_archivos (arc_dtcreate, categoria_id,product_id,arc_descrip,arc_estado,arc_nombre,arc_tipo,arc_contenido,arc_tamanio) VALUES (" . $this->UTILITY->date_now_server() . ", $this->idcategoria, $this->idproducto, '$this->descrip','$this->habilitado','" . $file_name . "','" . $file_type . "','" . $contenido . "','" . $file_size . "')";
-                        mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
-                        $idfile = mysql_insert_id();
-                        if ($idfile <= 0) {
-                            //No ingreso el registro
-                            header('Location: galerias.php');
-                        }
-                        header('Location: galerias.php');
-                    }
-                    header('Location: galerias.php');
-                } else {
-                    //Si no manda images
-                    $q = "INSERT INTO tiendaonline_archivos (arc_dtcreate,categoria_id, product_id,arc_descrip,arc_estado) VALUES (" . $this->UTILITY->date_now_server() . ", $this->idproducto, '$this->descrip','$this->habilitado',$this->idcategoria)";
+            if ($file_name != '') {
+                if ($file_error == 0 && $file_size > 0 && $file_size < 14716800) {
+                    $q = "INSERT INTO tiendaonline_archivos (arc_dtcreate, categoria_id,product_id,arc_descrip,arc_estado,arc_nombre,arc_tipo,arc_contenido,arc_tamanio) VALUES (" . $this->UTILITY->date_now_server() . ", $this->idcategoria, $this->idproducto, '$this->descrip','$this->habilitado','" . $file_name . "','" . $file_type . "','" . $contenido . "','" . $file_size . "')";
                     mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                    $id = mysql_insert_id();
+                    $_SESSION["nombrearchivo"] = "";
+                    $_SESSION["tipoarchivo"] = "";
+                    $_SESSION["contenidooarchivo"] = "";
+                    $_SESSION["tamanio"] = "";
+                    $_SESSION["error"] = "";
                     header('Location: galerias.php');
                 }
+            } else {
+                //Si no manda images
+                $q = "INSERT INTO tiendaonline_archivos (arc_dtcreate,categoria_id, product_id,arc_descrip,arc_estado) VALUES (" . $this->UTILITY->date_now_server() . ", $this->idcategoria,$this->idproducto, '$this->descrip','$this->habilitado')";
+                mysql_query($q, $this->conexion) or die(mysql_error() . "***ERROR: " . $q);
+                $id = mysql_insert_id();
+                $_SESSION["nombrearchivo"] = "";
+                $_SESSION["tipoarchivo"] = "";
+                $_SESSION["contenidooarchivo"] = "";
+                $_SESSION["tamanio"] = "";
+                $_SESSION["error"] = "";
                 header('Location: galerias.php');
             }
-            header('Location: galerias.php');
-            //$arrjson = array('output' => array('valid' => true, 'id' => $id));
         }
         header('Location: galerias.php');
-        //$this->response = ($arrjson);
     }
 
     public function galeriaget() {
